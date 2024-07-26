@@ -1,0 +1,85 @@
+import java.util.*
+
+class Coffee(val water : Int, val milk : Int, val beans : Int){
+    companion object {
+        val espresso: Coffee = Coffee(60, 0, 10)
+        val americano: Coffee = Coffee(120, 0, 10)
+        val capuchino: Coffee = Coffee(120, 60, 20)
+        val latte: Coffee = Coffee(240, 120, 20)
+     }
+}
+
+class CoffeeMachine {
+    private var scanner = Scanner(System.`in`)
+    
+    var water : Int = 2000
+    var milk : Int = 1000
+    var beans : Int = 500
+
+    // Начните написание программы с публичной функции start().
+    fun start(){
+        println("Кофемашина готова к работе")
+        var run = true
+        while(run){
+            println("Введите команду")
+            val input = scanner.next()
+            when(input){
+                "выключить" -> {
+                    println("До свидания!")
+                    run = false
+                }
+                "наполнить" -> {
+                    water = 2000
+                    milk = 1000
+                    beans = 500
+                    println("Ингридиенты пополнены")
+                }
+                 "статус" -> {
+                     println("Ингридиентов осталось:")
+                     println("$water мл воды\n$milk мл молока\n$beans гр кофе")
+                 }
+                 "кофе" -> {
+                     while(true){
+                     println("Введите название напитка или \"назад\" для возврата в главное меню")
+                     val input2 = scanner.next()
+                     var coffee : Coffee
+                     when(input2.lowercase()){
+                         "эспрессо" -> coffee = Coffee.espresso  
+                         "американо" -> coffee = Coffee.americano  
+                         "капучино" -> coffee = Coffee.capuchino  
+                         "латте" -> coffee = Coffee.latte  
+                         "назад" -> break
+                         else -> {
+                             println("Рецепт не найден!")
+                             continue
+                         } 
+                     }
+                     if(water >= coffee.water){
+                         if(milk >= coffee.milk){
+                             if(beans >= coffee.beans){
+                                 water -= coffee.water
+                                 milk -= coffee.milk
+                                 beans -= coffee.beans
+                                 println("$input2 готов")
+                             }else{ 
+                                 println("Недостаточно кофе!")
+                                 break
+                             }
+                         }else{
+                             println("Недостаточно молока!")
+                             break
+                             }
+                     }else{
+                         println("Недостаточно воды!")
+                         break
+                         }
+                     }       
+                 }
+                //  else -> println()
+            }
+        }
+    }
+    // В этот раз мы не даём вам конкретных указаний, как должна быть написана программа.
+    // У вас есть полная свобода действией, главное, что бы программа соответствовала ТЗ.
+    // Удачи!
+}
