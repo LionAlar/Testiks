@@ -51,7 +51,7 @@ class CoffeeMachine {
                          "назад" -> break
                          else -> {
                              println("Рецепт не найден!")
-                             continue
+                             break
                          } 
                      }
                      if(water >= coffee.water){
