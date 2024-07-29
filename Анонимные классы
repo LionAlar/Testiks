@@ -39,7 +39,7 @@ class CoffeeMachine {
                      println("$water мл воды\n$milk мл молока\n$beans гр кофе")
                  }
                  "кофе" -> {
-                     while(true){
+ 
                      println("Введите название напитка или \"назад\" для возврата в главное меню")
                      val input2 = scanner.next()
                      var coffee : Coffee
@@ -48,10 +48,10 @@ class CoffeeMachine {
                          "американо" -> coffee = Coffee.americano  
                          "капучино" -> coffee = Coffee.capuchino  
                          "латте" -> coffee = Coffee.latte  
-                         "назад" -> break
+                         "назад" -> continue
                          else -> {
                              println("Рецепт не найден!")
-                             break
+                             continue
                          } 
                      }
                      if(water >= coffee.water){
@@ -73,7 +73,7 @@ class CoffeeMachine {
                          println("Недостаточно воды!")
                          break
                          }
-                     }       
+                       
                  }
                 //  else -> println()
             }
